@@ -38,7 +38,7 @@ export default function Auth() {
           email,
           password,
           options: {
-            emailRedirectTo: window.location.origin,
+            emailRedirectTo: 'https://adventurousnotes.adventurousinvestorhub.com',
             data: {
               email_confirmed: false
             }
@@ -78,7 +78,7 @@ export default function Auth() {
       const { error } = await supabase.auth.signInWithOAuth({
         provider: 'google',
         options: {
-          redirectTo: window.location.origin
+          redirectTo: 'https://adventurousnotes.adventurousinvestorhub.com'
         }
       });
       if (error) throw error;
