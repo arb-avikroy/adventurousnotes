@@ -488,7 +488,9 @@ const AdventurousNotesApp = ({ session }) => {
   };
 
   const handleSignOut = async () => {
-    await supabase.auth.signOut();
+    if (confirm('Are you sure you want to sign out?')) {
+      await supabase.auth.signOut();
+    }
   };
 
   const formatTime = (seconds) => {
