@@ -910,7 +910,7 @@ const AdventurousNotesApp = ({ session }) => {
                 <div>
                   <h2 className="text-lg font-semibold text-amber-200">{selectedNote.title}</h2>
                   <p className="text-xs text-zinc-500">
-                    {formatDate(selectedNote.date)} • {selectedNote.meetingType}
+                    {formatDate(selectedNote.date)} • {formatTimeRange(selectedNote.date, selectedNote.duration)} • {selectedNote.meetingType}
                   </p>
                 </div>
               </div>
