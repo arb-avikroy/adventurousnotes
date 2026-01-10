@@ -517,9 +517,8 @@ const AdventurousNotesApp = ({ session }) => {
 
   const formatTimeRange = (dateString, durationSeconds) => {
     const startDate = new Date(dateString);
-    const endDate = new Date(startDate.getTime() + (durationSeconds * 1000));
     
-    return endDate.toLocaleTimeString('en-US', { 
+    return startDate.toLocaleTimeString('en-US', { 
       hour: 'numeric', 
       minute: '2-digit',
       hour12: true 
@@ -911,7 +910,7 @@ const AdventurousNotesApp = ({ session }) => {
                 <div>
                   <h2 className="text-lg font-semibold text-amber-200">{selectedNote.title}</h2>
                   <p className="text-xs text-zinc-500">
-                    {formatDate(selectedNote.date)} • {formatTime(selectedNote.duration)} • {selectedNote.meetingType}
+                    {formatDate(selectedNote.date)} • {selectedNote.meetingType}
                   </p>
                 </div>
               </div>
