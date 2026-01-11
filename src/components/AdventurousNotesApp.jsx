@@ -616,6 +616,18 @@ const AdventurousNotesApp = ({ session }) => {
             </div>
           </div>
 
+          {/* Notification Banner */}
+          <div className="px-6 py-4 bg-orange-950 border-b border-orange-800 flex items-start gap-3">
+            <div className="flex-shrink-0 pt-0.5">
+              <span className="text-lg">⏰</span>
+            </div>
+            <div className="flex-1 min-w-0">
+              <p className="text-sm text-orange-200">
+                <span className="font-semibold">Note:</span> Recordings will be automatically deleted after 20 days. Download or save important content before expiration.
+              </p>
+            </div>
+          </div>
+
           {/* Content */}
           <div className="p-6">
             {/* Recent Section */}
