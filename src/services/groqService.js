@@ -48,98 +48,57 @@ export async function generateSummary(transcript) {
         model: 'llama-3.3-70b-versatile',
         messages: [{
           role: 'system',
-          content: 'You are a senior meeting intelligence and audio analysis assistant. Your responsibility is to analyze raw voice-to-text transcripts from meetings, webinars, coaching sessions, or training calls. You must first identify the context accurately and then generate structured, executive-ready summary notes using the correct format. You clean filler words, resolve broken sentences, preserve intent, avoid hallucinations, and clearly flag missing information as \'Not specified\'.'
+          content: `You are an expert speech analyst specializing in creating digestible, structured summaries. 
+Your task is to summarize the provided speech in a "granola format" - organized as distinct, 
+self-contained clusters of related ideas that readers can quickly scan and understand.
+
+INSTRUCTIONS:
+
+1. **Identify the Core Clusters**: Break the speech into 3-7 major topic clusters. 
+   Each cluster should represent a distinct theme, argument, or idea.
+
+2. **Format Each Cluster As**:
+   - **Cluster Title** (bold, action-oriented or concept-focused)
+   - 2-3 key points as short statements (max 15 words each)
+   - 1 supporting detail or example (optional, 1 sentence)
+
+3. **Structure Rules**:
+   - No paragraphs or dense text blocks
+   - Use clear visual separation between clusters
+   - Each cluster should stand alone but fit into the larger narrative
+   - Prioritize concrete takeaways over abstract descriptions
+
+4. **Key Points Guidelines**:
+   - State facts, claims, or arguments concisely
+   - Use active voice and specific language
+   - Avoid jargon unless necessary; prioritize clarity
+   - Include numbers, percentages, or evidence when present
+
+5. **Include These Sections**:
+   - **Main Message**: One sentence capturing the speech's central thesis
+   - **Key Clusters**: 3-7 organized idea clusters (as described above)
+   - **Audience Takeaway**: What should the listener/reader remember most?
+
+6. **Format Example**:
+   
+   **Main Message**
+   [One clear sentence about the overall speech]
+
+   **Cluster Name**
+   - Key point 1
+   - Key point 2
+   - Key point 3
+   Supporting detail: [relevant context or example]
+
+TONE & STYLE:
+- Professional but accessible
+- Objective (avoid editorializing unless the speaker explicitly advocated)
+- Scannable (readers should grasp content in 2-3 minutes)
+- Actionable (emphasize what people can do or understand)`
         }, {
           role: 'user',
-          content: `You will be given raw transcription text from an audio recording. First, determine whether the content represents (A) a Webinar / Coaching / Training session or (B) a Corporate / Business meeting. Clearly state the identified context type at the top. Then generate summary notes using the corresponding structure below, strictly following formatting and content rules.
+          content: `Please summarize this speech transcript in the granola format as instructed:
 
-COMMON RULES:
-• Do not invent or assume information
-• Remove filler words, repetitions, and irrelevant chatter
-• Preserve intent, decisions, and instructional emphasis
-• Use professional, neutral, concise language
-• Flag unclear or missing details as 'Not specified'
-• Use bullet points only
-• Avoid paragraphs longer than two lines
-• Bold section headers only
-• Maintain consistent tense and terminology
-
-CONTEXT IDENTIFICATION:
-Identify context before summarizing:
-- Webinar/Coaching: Teaching tone, explanations, frameworks, concepts, mindset guidance, examples
-- Corporate Meeting: Decisions, approvals, ownership, timelines, risks, deliverables
-
----
-
-IF WEBINAR / COACHING / TRAINING:
-
-📚 Context Type: Webinar / Coaching / Training
-
-🎯 SESSION OVERVIEW
-• Session type: [Type]
-• Topic / Theme: [Topic]
-• Speaker(s): [Names or Not specified]
-• Target audience: [Audience or Not specified]
-• Session goal: [Goal]
-
-💡 CORE TAKEAWAYS
-• [6-10 key instructional points or insights]
-
-📖 DETAILED BREAKDOWN
-• [Concepts or modules with explanation and examples]
-
-🔧 PRACTICAL INSIGHTS
-• [Tools, methods, techniques, or step-by-step processes]
-
-⚠️ COMMON MISTAKES / WARNINGS
-• [Mistakes, impact, and suggested corrections]
-
-✅ ACTIONABLE ADVICE
-• Immediate actions: [List]
-• Long-term strategies: [List]
-
-❓ QUESTIONS FROM PARTICIPANTS
-• Q: [Question] | A: [Response]
-
-💬 KEY QUOTES (Optional)
-• "[Impactful instructional statements]"
-
----
-
-IF CORPORATE / BUSINESS MEETING:
-
-💼 Context Type: Corporate / Business Meeting
-
-📋 MEETING OVERVIEW
-• Meeting type: [Type]
-• Date: [Date or Not specified]
-• Participants: [Names or roles]
-• Objective: [Purpose]
-
-🎯 EXECUTIVE SUMMARY
-• [5-7 bullets covering outcomes and business impact]
-
-🗣️ KEY DISCUSSION POINTS
-• [Topics with summaries and important details]
-
-✅ DECISIONS MADE
-• Decision: [What] | Rationale: [Why] | Owner: [Who]
-
-🚀 ACTION ITEMS
-• Task: [What] | Owner: [Who] | Deadline: [When]
-
-⚠️ RISKS / CONCERNS
-• Issue: [What] | Impact: [Effect] | Mitigation: [Plan]
-
-❓ OPEN QUESTIONS
-• Question: [What] | Owner: [Who]
-
-📅 NEXT STEPS
-• [Immediate follow-ups and upcoming milestones]
-
----
-
-Transcript:
 ${transcript}`
         }],
         temperature: 0.7,
